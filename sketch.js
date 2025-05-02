@@ -39,6 +39,11 @@ function drawGraphics() {
   // 設定 graphics 背景為黑色
   graphics.background(0);
 
+  // 翻轉 graphics 的畫布，修正左右顛倒
+  graphics.push();
+  graphics.translate(graphics.width, 0); // 將畫布原點移到右側
+  graphics.scale(-1, 1); // 水平翻轉畫布
+
   // 每隔 20 單位繪製方框和圓
   for (let y = 0; y < graphics.height; y += 20) {
     for (let x = 0; x < graphics.width; x += 20) {
@@ -55,4 +60,6 @@ function drawGraphics() {
       graphics.ellipse(x + 10, y + 10, 5, 5); // 圓心置於方框中央
     }
   }
+
+  graphics.pop(); // 恢復畫布狀態
 }
