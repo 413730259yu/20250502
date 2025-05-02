@@ -2,25 +2,38 @@ let capture;
 let graphics;
 
 function setup() {
-  createCanvas(400, 400);
-  let capture = createCapture(VIDEO);
-  capture.size(320, 240);
-  capture.hide();
+  createCanvas(windowWidth, windowHeight);
+  background(220);
+
+  // 初始化攝影機擷取
+  capture = createCapture(VIDEO);
+  capture.size(windowWidth * 0.8, windowHeight * 0.8);
+  capture.hide(); // 隱藏原始的攝影機畫面
+
+  // 建立與攝影機畫面大小相同的 graphics
+  graphics = createGraphics(capture.width, capture.height);
 }
 
 function draw() {
   background(220);
-  image(capture, 0, 0);
+
+  // 繪製攝影機畫面
+  let x = (width - capture.width) / 2;
+  let y = (height - capture.height) / 2;
+  image(capture, x, y, capture.width, capture.height);
+
+  // 繪製 graphics
+  drawGraphics();
+  image(graphics, x, y); // 將 graphics 繪製在攝影機畫面上
 }
 
 function windowResized() {
-  // 當視窗大小改變時，重新調整畫布大小
+  // 當視窗大小改變時，重新調整畫布和攝影機大小
   resizeCanvas(windowWidth, windowHeight);
   capture.size(windowWidth * 0.8, windowHeight * 0.8);
 
-  // 重新調整圖形大小並重繪
+  // 重新調整 graphics 大小
   graphics = createGraphics(capture.width, capture.height);
-  drawGraphics();
 }
 
 function drawGraphics() {
