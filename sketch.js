@@ -27,7 +27,7 @@ function draw() {
   push();
   translate(width, 0); // 將畫布原點移到右上角
   scale(-1, 1); // 水平翻轉畫布
-  //image(capture, x, y, capture.width, capture.height);
+  image(capture, x, y, capture.width, capture.height);
   pop();
 
   // 在視訊畫面上方顯示圖形
