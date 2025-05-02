@@ -39,16 +39,20 @@ function drawGraphics() {
   // 設定 graphics 背景為黑色
   graphics.background(0);
 
-  // 每隔 20 單位繪製圓
+  // 每隔 20 單位繪製方框和圓
   for (let y = 0; y < graphics.height; y += 20) {
     for (let x = 0; x < graphics.width; x += 20) {
       // 從 capture 擷取相對應位置的顏色
       let col = capture.get(x, y);
 
-      // 繪製圓，大小為 15，顏色為擷取的顏色
+      // 繪製方框，寬高為 18，顏色為擷取的顏色
       graphics.fill(col);
       graphics.noStroke();
-      graphics.ellipse(x + 10, y + 10, 15, 15); // 圓心偏移 10 以置中
+      graphics.rect(x + 1, y + 1, 18, 18); // 方框稍微偏移以避免重疊
+
+      // 在方框中間繪製黑色圓，半徑為 5
+      graphics.fill(0);
+      graphics.ellipse(x + 10, y + 10, 5, 5); // 圓心置於方框中央
     }
   }
 }
