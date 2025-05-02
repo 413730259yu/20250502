@@ -17,14 +17,13 @@ function setup() {
 function draw() {
   background(220);
 
-  // 繪製攝影機畫面
-  let x = (width - capture.width) / 2;
-  let y = (height - capture.height) / 2;
-  image(capture, x, y, capture.width, capture.height);
+  // 計算 graphics 的置中位置
+  let graphicsX = (width - graphics.width) / 2;
+  let graphicsY = (height - graphics.height) / 2;
 
-  // 繪製 graphics
+  // 繪製 graphics，置中顯示
   drawGraphics();
-  image(graphics, x, y); // 將 graphics 繪製在攝影機畫面上
+  image(graphics, graphicsX, graphicsY); // 將 graphics 繪製在畫布中央
 }
 
 function windowResized() {
